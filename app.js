@@ -84,7 +84,25 @@ function getData() {
 }
 
 // CUSTOM HEADERS
-function customHeaders() {}
+function customHeaders() {
+    const config = {
+        headers: {
+            'Content-type': 'application-json',
+            Authorization: 'sometoken',
+        },
+    };
+    axios
+        .post(
+            'https://jsonplaceholder.typicode.com/todos?_limit=5',
+            {
+                title: 'NewTodo',
+                completed: false,
+            },
+            config
+        )
+        .then((res) => showOutput(res))
+        .catch((err) => console.log(err));
+}
 
 // TRANSFORMING REQUESTS & RESPONSES
 function transformResponse() {
