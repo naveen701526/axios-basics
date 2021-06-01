@@ -22,7 +22,9 @@ function getTodos() {
     //     .catch((err) => console.log(err));
 
     axios
-        .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+        .get('https://jsonplaceholder.typicode.com/todos?_limit=5', {
+            timeout: 2000,
+        })
         .then((res) => showOutput(res))
         .catch((err) => console.log(err));
 }
@@ -183,6 +185,12 @@ axios.interceptors.request.use(
 );
 
 // AXIOS INSTANCES
+const axiosInstance = axios.create({
+    // other custom settings
+    baseURL: 'https://jsonplaceholder.typicode.com',
+});
+
+// axiosInstance.get('/comments').then((res) => showOutput(res));
 
 // Show output in browser
 function showOutput(res) {
